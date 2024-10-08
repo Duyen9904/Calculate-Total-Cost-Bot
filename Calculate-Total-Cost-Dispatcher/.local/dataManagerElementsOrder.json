@@ -124,20 +124,6 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "BillingInvoice/ExtractPdfData2.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "firstMatch&Sequence_1",
-        "ienFirstMatch&Sequence_1",
-        "strExtractedText&Sequence_1"
-      ],
-      "ArgumentsSectionElementsOrder": [
-        "out_DataTable"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
       "Path": "BillingInvoice/GetPdfFileName.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
