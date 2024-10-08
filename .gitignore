@@ -3,6 +3,7 @@ Logs/
 
 # Publish-related
 *.nupkg
+.local/db/references.db
 
 # User-specific settings
 *.local
