@@ -21019,15 +21019,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\P15\\.nuget\\packages\\": {}
+    "C:\\Users\\Windows\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "Calculate-Total-Cost-Dispatcher",
       "projectName": "Calculate-Total-Cost-Dispatcher",
-      "projectPath": "C:\\Users\\P15\\Documents\\UiPath\\Calculate-Total-Cost-Dispatcher\\.local",
-      "packagesPath": "C:\\Users\\P15\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\P15\\Documents\\UiPath\\Calculate-Total-Cost-Dispatcher\\.local"
+      "projectPath": "C:\\Users\\Windows\\OneDrive\\Documents\\UiPath\\Calculate-Total-Cost-Bot\\Calculate-Total-Cost-Dispatcher\\.local",
+      "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Windows\\OneDrive\\Documents\\UiPath\\Calculate-Total-Cost-Bot\\Calculate-Total-Cost-Dispatcher\\.local"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -21063,7 +21063,7 @@
             "version": "[24.11.1-preview, 24.11.1-preview]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Windows\\AppData\\Local\\Programs\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
