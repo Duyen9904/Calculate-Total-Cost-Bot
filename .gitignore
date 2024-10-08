@@ -1,0 +1,21 @@
+# Logs
+Logs/
+
+# Publish-related
+*.nupkg
+
+# User-specific settings
+*.local
+project.json.user
+UiPath.settings
+UiPath.project.user
+
+# Screenshot folder
+.screenshots/
+
+# Packages folder
+.nuget/
+
+# Temp files
+*.cache
+*.manifest
