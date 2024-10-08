@@ -1,6 +1,9 @@
 # Logs
 Logs/
 
+# Ignore all DLL files
+*.dll
+
 # Publish-related
 *.nupkg
 .local/db/references.db

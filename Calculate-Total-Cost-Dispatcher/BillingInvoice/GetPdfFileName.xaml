@@ -1,11 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="BrowsePdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="BrowsePdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_FolderPath" Type="InArgument(x:String)" />
-    <x:Property Name="out_DataTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="out_FileName" Type="OutArgument(x:String)" />
   </x:Members>
-  <this:BrowsePdf.out_DataTable>
-    <InArgument x:TypeArguments="sd:DataTable" />
-  </this:BrowsePdf.out_DataTable>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -43,6 +40,7 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -102,61 +100,66 @@
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="BrowsePdf" sap:VirtualizedContainerService.HintSize="860.0000000000001,1060.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="BrowsePdf" sap:VirtualizedContainerService.HintSize="860.0000000000001,1055.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="s:String[]" Name="arrFileNames" />
-      <Variable x:TypeArguments="sd:DataTable" Name="out_DataTable" />
-      <Variable x:TypeArguments="x:String" Name="testvalue" />
+      <Variable x:TypeArguments="x:String" Name="tets" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BuildDataTable DataTable="[out_DataTable]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="449.6,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;FileName&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <Assign sap:VirtualizedContainerService.HintSize="449.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="s:String[]">[arrFileNames]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles("C:\Users\P15\Documents\UiPath\Calculate-Total-Cost-Dispatcher\Data\Input", "*.pdf")]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="449.6,417.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[arrFileNames]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="x:String">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,271.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="500.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Start get pdf file name&quot;]" />
+    <ui:ForEachFileX sap2010:Annotation.AnnotationText="This loop iterates through each file in the specified folder to find the first .pdf file for processing." DisplayName="For Each File in Input Folder" Filter="*.pdf" Folder="[in_FolderPath]" sap:VirtualizedContainerService.HintSize="500.8,692" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+      <ui:ForEachFileX.Body>
+        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+          <ActivityAction.Argument1>
+            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+          </ActivityAction.Argument1>
+          <ActivityAction.Argument2>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+          </ActivityAction.Argument2>
+          <Sequence sap2010:Annotation.AnnotationText="This sequence use to assign file name after found to pass out_FileName for processing TransactionItem" DisplayName="Do - Assign File Name" sap:VirtualizedContainerService.HintSize="467.2,353.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{currentText}]" DataTable="[out_DataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="382.4,211.2" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+            <Assign sap2010:Annotation.AnnotationText="This activity assigns the full path of the current PDF file to the out_FileName argument for further processing." DisplayName="Assign Full File Name" sap:VirtualizedContainerService.HintSize="433.6,157.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_FileName]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentFile.FullName]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <ui:Break sap2010:Annotation.AnnotationText="This activity stops the loop once the first PDF file has been found and its path is assigned." DisplayName="Break - Exit After Finding First File" sap:VirtualizedContainerService.HintSize="433.6,92" sap2010:WorkflowViewState.IdRef="Break_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Break>
           </Sequence>
         </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_DataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="449.6,414.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-      <ui:ForEachRow.Body>
-        <ActivityAction x:TypeArguments="sd:DataRow">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,225.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382.4,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[CurrentRow(&quot;FileName&quot;)]" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachRow.Body>
-    </ui:ForEachRow>
+      </ui:ForEachFileX.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachFileX>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="500.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;End get pdf file name&quot;]" />
   </Sequence>
 </Activity>

@@ -1,4 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ExtractFileZip" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ExtractFileZip_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:uascw="clr-namespace:UiPath.Activities.System.Compression.Workflow;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractFileZip" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:uascw="clr-namespace:UiPath.Activities.System.Compression.Workflow;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_InputFolder" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ExtractFileZip_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -90,17 +97,26 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractFileZip" sap:VirtualizedContainerService.HintSize="860.0000000000001,792.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractFileZip" sap:VirtualizedContainerService.HintSize="790.4000000000001,907.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="strExtracted" />
+      <Variable x:TypeArguments="x:String" Name="strFileToExtract" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uascw:ExtractFiles Content="{x:Null}" File="{x:Null}" Password="{x:Null}" CodePage="Default" ConflictResolution="Replace" DestinationFolder="C:\Users\P15\Documents\UiPath\Calculate-Total-Cost-Dispatcher\Data\Input" DestinationFolderInfo="[strExtracted]" DisplayName="Extract/Unzip Files" ExtractToADedicatedFolder="True" FileToExtract="C:\Users\P15\Documents\UiPath\Calculate-Total-Cost-Dispatcher\Data\Input\Invoice set 15-20241008T102626Z-001.zip" sap:VirtualizedContainerService.HintSize="449.6,240.8" sap2010:WorkflowViewState.IdRef="ExtractFiles_1" SkipUnsupportedFiles="False" />
-    <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[strExtracted.ToString]" sap:VirtualizedContainerService.HintSize="449.6,528.8" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="True" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <Assign sap:VirtualizedContainerService.HintSize="449.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strFileToExtract]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Directory.GetFiles(in_InputFolder, "*.zip")(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <uascw:ExtractFiles Content="{x:Null}" File="{x:Null}" Password="{x:Null}" CodePage="Default" ConflictResolution="Replace" DestinationFolder="[in_InputFolder]" DestinationFolderInfo="[strExtracted]" DisplayName="Extract/Unzip Files" ExtractToADedicatedFolder="True" FileToExtract="[strFileToExtract]" sap:VirtualizedContainerService.HintSize="449.6,240.8" sap2010:WorkflowViewState.IdRef="ExtractFiles_1" SkipUnsupportedFiles="False" />
+    <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[strExtracted.ToString]" sap:VirtualizedContainerService.HintSize="449.6,529.6" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="True" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -115,7 +131,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="C:\Users\P15\Documents\UiPath\Calculate-Total-Cost-Dispatcher\Data\Input" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="382.4,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[CurrentFile.FullName]" />
+            <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_InputFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="382.4,183.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[CurrentFile.FullName]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEachFileX.Body>
