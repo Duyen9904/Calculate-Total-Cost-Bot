@@ -109,7 +109,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1452.8000000000002,1058.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1452.0000000000002,1058.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="GrandTotal" />
       <Variable x:TypeArguments="x:Int32" Name="TotalSevFee" />
@@ -152,6 +152,7 @@
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_Dtb">[InvoiceDtb]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Sheet">[in_Config("SheetName").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[in_Config("FilePath").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Range">[in_Config("Range").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message Process End" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Ended Process&quot;]" />
