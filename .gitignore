@@ -73,4 +73,3 @@ desktop.ini
 
 # Ignore node_modules (if you use any external JS/CSS tools)
 node_modules/
-*.dll

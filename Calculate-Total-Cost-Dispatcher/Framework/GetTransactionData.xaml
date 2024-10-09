@@ -7,7 +7,6 @@
     <x:Property sap2010:Annotation.AnnotationText="Allow the optional addition of information about the transaction item." Name="out_TransactionField2" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Transaction ID used for information and logging purposes. Ideally, the ID should be unique for each transaction. " Name="out_TransactionID" Type="OutArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="This variable can be used in case transactions are stored in a DataTable (for example, after being retrieved from a spreadsheet)." Name="io_dt_TransactionData" Type="InOutArgument(sd:DataTable)" />
-    <x:Property Name="in_CurrentRetry" Type="InArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -49,15 +48,6 @@
       <x:String>System.Linq.Expressions</x:String>
       <x:String>System.Numerics</x:String>
       <x:String>System.ComponentModel</x:String>
-      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
-      <x:String>UiPath.UIAutomationNext.Enums</x:String>
-      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
-      <x:String>UiPath.Semantic.Activities</x:String>
-      <x:String>UiPath.Shared.Activities</x:String>
-      <x:String>UiPath.UIAutomationNext.Activities</x:String>
-      <x:String>UiPath.Platform.ObjectLibrary</x:String>
-      <x:String>UiPath.Platform.SyncObjects</x:String>
-      <x:String>UiPath.Platform.ResourceHandling</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -125,17 +115,18 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
-      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
-      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Platform</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Get a transaction item from a specified source (e.g., Orchestrator queues, spreadsheets, databases, mailboxes or web APIs). &#xA;&#xA;If there are no transaction items remaining, out_TransactionItem is set to Nothing, which leads to the End Process state. &#xA;&#xA;For cases in which there is only a single transaction (i.e., a linear process), use an If activity to check whether the argument in_TransactionNumber has the value 1 (meaning it is the first and only transaction) and assign the transaction item to out_TransactionItem. For any other value of in_TransactionNumber, out_TransactionItem should be set to Nothing.&#xA;&#xA;If there are multiple transactions, use the argument in_TransactionNumber as an index to retrieve the correct transaction to be processed. If there are no more transactions left, it is necessary to set out_TransactionItem to Nothing, thus ending the process." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="790.4000000000001,4176.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Get a transaction item from a specified source (e.g., Orchestrator queues, spreadsheets, databases, mailboxes or web APIs). &#xA;&#xA;If there are no transaction items remaining, out_TransactionItem is set to Nothing, which leads to the End Process state. &#xA;&#xA;For cases in which there is only a single transaction (i.e., a linear process), use an If activity to check whether the argument in_TransactionNumber has the value 1 (meaning it is the first and only transaction) and assign the transaction item to out_TransactionItem. For any other value of in_TransactionNumber, out_TransactionItem should be set to Nothing.&#xA;&#xA;If there are multiple transactions, use the argument in_TransactionNumber as an index to retrieve the correct transaction to be processed. If there are no more transactions left, it is necessary to set out_TransactionItem to Nothing, thus ending the process." DisplayName="Get Transaction Data" sap:VirtualizedContainerService.HintSize="790.4000000000001,3045.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Int32" Name="intCurrentRetry" />
+      <Variable x:TypeArguments="x:String" Name="outfilename">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">InvokeWorkflowFile_4</x:String>
+            <x:String x:Key="SourcePropertyName">out_FileName</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -143,21 +134,18 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Get Transaction Item" sap:VirtualizedContainerService.HintSize="662.4,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Get the transaction item&quot;]" />
-    <ui:RetryScope sap2010:Annotation.AnnotationText="This sequence handles the process of retrying to get a transaction item (PDF file) from the input folder. The logic first checks if there are any files in the input folder to process." DisplayName="Retry Get transaction item" sap:VirtualizedContainerService.HintSize="662.4,3136.8" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberGetTransactionItem&quot;))]">
+    <ui:LogMessage DisplayName="Log Message Get Transaction Item" sap:VirtualizedContainerService.HintSize="595.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Get the transaction item&quot;]" />
+    <ui:RetryScope sap2010:Annotation.AnnotationText="This sequence handles the process of retrying to get a transaction item (PDF file) from the input folder. The logic first checks if there are any files in the input folder to process." DisplayName="Retry Get transaction item" sap:VirtualizedContainerService.HintSize="595.2,2005.6" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberGetTransactionItem&quot;))]">
       <ui:RetryScope.ActivityBody>
         <ActivityAction>
-          <TryCatch sap2010:Annotation.AnnotationText="The Try-Catch block ensures that the process can recover from any exceptions while trying to retrieve a transaction item from the input folder. If an error occurs, it will retry or log the error." DisplayName="Try Catch Get transaction item" sap:VirtualizedContainerService.HintSize="620.8,2884.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
-            <TryCatch.Variables>
-              <Variable x:TypeArguments="x:String" Name="strFileName" />
-            </TryCatch.Variables>
+          <TryCatch sap2010:Annotation.AnnotationText="The Try-Catch block ensures that the process can recover from any exceptions while trying to retrieve a transaction item from the input folder. If an error occurs, it will retry or log the error." DisplayName="Try Catch Get transaction item" sap:VirtualizedContainerService.HintSize="553.6,1753.6" sap2010:WorkflowViewState.IdRef="TryCatch_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <If sap2010:Annotation.AnnotationText="This If condition checks whether the input folder contains files. If the folder has PDF files, it proceeds with processing and condition checks the number of files in the input folder. It returns true if there are files available to process, meaning that there is a new transaction." Condition="[Directory.GetFiles(in_Config.Item(&quot;InputFolderPath&quot;).ToString(), &quot;*.pdf&quot;).Count &gt; 0]" DisplayName="If Have Pdf File In Input Folder" sap:VirtualizedContainerService.HintSize="584,2609.6" sap2010:WorkflowViewState.IdRef="If_2">
+              <If sap2010:Annotation.AnnotationText="This If condition checks whether the input folder contains files. If the folder has PDF files, it proceeds with processing and condition checks the number of files in the input folder. It returns true if there are files available to process, meaning that there is a new transaction." Condition="[Directory.GetFiles(in_Config.Item(&quot;InputFolderPath&quot;).ToString(), &quot;*.pdf&quot;).Count &gt; 0]" DisplayName="If Have Pdf File In Input Folder" sap:VirtualizedContainerService.HintSize="516.8,1478.4" sap2010:WorkflowViewState.IdRef="If_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -166,7 +154,10 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence sap2010:Annotation.AnnotationText="This action retrieves the name of the next PDF file from the input folder. The PDF file name will be used for further processing." DisplayName="Then Retrieve PDF File Name" sap:VirtualizedContainerService.HintSize="467.2,503.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence sap2010:Annotation.AnnotationText="This action retrieves the name of the next PDF file from the input folder. The PDF file name will be used for further processing." DisplayName="Then Retrieve PDF File Name" sap:VirtualizedContainerService.HintSize="467.2,519.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="strFileName" />
+                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -174,7 +165,7 @@
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This will invoke to get pdf file name to pass as out_TransactionItem" DisplayName="GetPdfFileName - Invoke Workflow File (BillingInvoice\GetPdfFileName.xaml)" sap:VirtualizedContainerService.HintSize="433.6,250.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="BillingInvoice\GetPdfFileName.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This invokes a separate workflow to get the PDF file name from the folder and stores it in the strFileName variable, which represents the transaction to process." DisplayName="GetPdfFileName - Copy (1) - Invoke Workflow File (BillingInvoice\GetPdfFileName - Copy (1).xaml)" sap:VirtualizedContainerService.HintSize="433.6,266.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="BillingInvoice\GetPdfFileName.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="in_FolderPath">[in_Config.Item("InputFolderPath").ToString]</InArgument>
                         <OutArgument x:TypeArguments="x:String" x:Key="out_FileName">[strFileName]</OutArgument>
@@ -201,7 +192,7 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence sap2010:Annotation.AnnotationText="This If condition checks whether there are any failed files in the &quot;Failed&quot; folder. If failed files are found, the bot moves them back to the input folder for reprocessing." DisplayName=" Else If Failed Folder Contains File" sap:VirtualizedContainerService.HintSize="550.4,1908" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <Sequence sap2010:Annotation.AnnotationText="This If condition checks whether there are any failed files in the &quot;Failed&quot; folder. If failed files are found, the bot moves them back to the input folder for reprocessing." DisplayName=" Else If Failed Folder Contains File" sap:VirtualizedContainerService.HintSize="483.2,760.8" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -209,118 +200,42 @@
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="516.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Start check if reach max retry&quot;]" />
-                    <If Condition="[in_CurrentRetry &lt;= CInt(in_Config(&quot;MaxRetryNumber&quot;).ToString)]" DisplayName="If Reach Max Retry" sap:VirtualizedContainerService.HintSize="516.8,1629.6" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If sap2010:Annotation.AnnotationText="This If condition checks whether there are any failed files in the &quot;Failed&quot; folder. If failed files are found, the bot moves them back to the input folder for reprocessing." Condition="[Directory.GetFiles(in_Config(&quot;FailedFolderPath&quot;).ToString()).Count &gt; 0]" DisplayName="If Failed Folder Contains File" sap:VirtualizedContainerService.HintSize="449.6,656.8" sap2010:WorkflowViewState.IdRef="If_3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,1036" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <Sequence sap2010:Annotation.AnnotationText=" This action moves any failed PDF files from the &quot;Failed&quot; folder back to the input folder so they can be retried by the bot for processing." DisplayName="Then Retry Failed PDF Processing" sap:VirtualizedContainerService.HintSize="416,345.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This invokes the workflow to handle the movement of failed PDF files back to the input folder." DisplayName="MoveFile - Invoke Workflow File (BillingInvoice\MoveFile.xaml)" sap:VirtualizedContainerService.HintSize="382.4,241.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="BillingInvoice\MoveFile.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_FailedFolder">[in_Config("FailedFolderPath").ToString]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_InputFolder">[in_Config("InputFolderPath").ToString]</InArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_FileName">[out_TransactionItem]</OutArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;current retry: &quot; + intCurrentRetry.ToString]">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </ui:LogMessage>
-                          <If sap2010:Annotation.AnnotationText="This If condition checks whether there are any failed files in the &quot;Failed&quot; folder. If failed files are found, the bot moves them back to the input folder for reprocessing." Condition="[Directory.GetFiles(in_Config(&quot;FailedFolderPath&quot;).ToString(), &quot;*.pdf&quot;).Count &gt; 0]" DisplayName="If Failed Folder Contains File" sap:VirtualizedContainerService.HintSize="449.6,814.4" sap2010:WorkflowViewState.IdRef="If_3">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <If.Then>
-                              <Sequence sap2010:Annotation.AnnotationText=" This action moves any failed PDF files from the &quot;Failed&quot; folder back to the input folder so they can be retried by the bot for processing." DisplayName="Then Retry Failed PDF Processing" sap:VirtualizedContainerService.HintSize="416,494.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="This invokes the workflow to handle the movement of failed PDF files back to the input folder." DisplayName="MoveFile - Invoke Workflow File (BillingInvoice\MoveFile.xaml)" sap:VirtualizedContainerService.HintSize="382.4,250.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="BillingInvoice\MoveFile.xaml">
-                                  <ui:InvokeWorkflowFile.Arguments>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_FailedFolder">[in_Config("FailedFolderPath").ToString]</InArgument>
-                                    <InArgument x:TypeArguments="x:String" x:Key="in_InputFolder">[in_Config("InputFolderPath").ToString]</InArgument>
-                                    <OutArgument x:TypeArguments="x:String" x:Key="out_FileName">[strFileName]</OutArgument>
-                                  </ui:InvokeWorkflowFile.Arguments>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </ui:InvokeWorkflowFile>
-                                <Assign sap2010:Annotation.AnnotationText=" Assigns the file name of the PDF to the out_TransactionItem, which will be used in the next steps for processing." sap:VirtualizedContainerService.HintSize="382.4,140" sap2010:WorkflowViewState.IdRef="Assign_10">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[out_TransactionItem]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">[strFileName]</InArgument>
-                                  </Assign.Value>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </Assign>
-                              </Sequence>
-                            </If.Then>
-                            <If.Else>
-                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                              </Sequence>
-                            </If.Else>
-                          </If>
-                          <Assign sap:VirtualizedContainerService.HintSize="449.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_9">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:Int32">[intCurrentRetry]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:Int32">[intCurrentRetry + 1]</InArgument>
-                            </Assign.Value>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Assign>
-                        </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,432" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="MoveFileToFailedPermanent - Invoke Workflow File (BillingInvoice\MoveFileToFailedPermanent.xaml)" sap:VirtualizedContainerService.HintSize="382.4,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="BillingInvoice\MoveFileToFailedPermanent.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_FailedFolder">[in_Config("FailedFolderPath").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_InputFolder">[in_Config("InputFolderPath").ToString]</InArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
-                          </ui:InvokeWorkflowFile>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382.4,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Due to &quot; + intCurrentRetry.ToString + &quot; times retry, It cannot continue process these/this file(s)&quot;]" />
                         </Sequence>
                       </If.Else>
                     </If>
@@ -329,7 +244,7 @@
               </If>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="587.2,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="520,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -364,7 +279,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:RetryScope>
-    <If sap2010:Annotation.AnnotationText="This optional step can be used to include more information about a transaction item and it is used mainly for logging and visualization purposes.&#xA;For example, if transaction items are invoices, then out_TransactionID can be the invoice number, out_TransactionField1 can be the invoice date and out_TransactionField2 can be the invoice amount." Condition="[out_TransactionItem isNot Nothing]" DisplayName="If a new transaction item is retrieved, get additional information about it" sap:VirtualizedContainerService.HintSize="662.4,766.4" sap2010:WorkflowViewState.IdRef="If_1">
+    <If sap2010:Annotation.AnnotationText="This optional step can be used to include more information about a transaction item and it is used mainly for logging and visualization purposes.&#xA;For example, if transaction items are invoices, then out_TransactionID can be the invoice number, out_TransactionField1 can be the invoice date and out_TransactionField2 can be the invoice amount." Condition="[out_TransactionItem isNot Nothing]" DisplayName="If a new transaction item is retrieved, get additional information about it" sap:VirtualizedContainerService.HintSize="595.2,766.4" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>

@@ -26,7 +26,6 @@
         "ShouldStop&Sequence_25"
       ],
       "ArgumentsSectionElementsOrder": [
-        "io_CurrentRetry",
         "in_OrchestratorQueueName",
         "in_OrchestratorQueueFolder"
       ],
@@ -37,11 +36,10 @@
       "Path": "Framework/GetTransactionData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "intCurrentRetry&Sequence_1",
-        "strFileName&TryCatch_2"
+        "strFileName&Sequence_9",
+        "outfilename&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "in_CurrentRetry",
         "in_TransactionNumber",
         "in_Config",
         "out_TransactionItem",
@@ -126,6 +124,32 @@
       "AddedNamespaces": null
     },
     {
+      "Path": "BillingInvoice/GetPdfFileName.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "arrFileNames&Sequence_1",
+        "out_DataTable&Sequence_1",
+        "testvalue&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_FolderPath",
+        "out_DataTable"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "BillingInvoice/OpenBillingFile.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_InputFolder",
+        "in_FileName"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
       "Path": "BillingInvoice/MoveFile.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
@@ -138,7 +162,7 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "BillingInvoice/GetPdfFileName.xaml",
+      "Path": "BillingInvoice/GetPdfFileName - Copy (1).xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "tets&Sequence_1"
@@ -181,62 +205,9 @@
       "Path": "BillingInvoice/ExtractFileZip.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "blExistZip&Sequence_1",
-        "strFileToExtract&Sequence_1",
         "strExtracted&Sequence_1"
       ],
-      "ArgumentsSectionElementsOrder": [
-        "in_InputFolder"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Framework/InitAllApplications.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": [
-        "in_Config"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "Framework/RetryCurrentTransaction.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": [
-        "in_Config",
-        "io_RetryNumber",
-        "io_TransactionNumber",
-        "in_SystemException",
-        "in_QueueRetry"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "BillingInvoice/MoveFileToFailedPermanent.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": [
-        "in_FailedFolder",
-        "in_InputFolder"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "BillingInvoice/RetryProcessPdf.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": [
-        "out_FileName",
-        "in_InputFolderPath",
-        "in_FailedFolderPath",
-        "in_CurrentRetry",
-        "in_MaxRetry"
-      ],
+      "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     }
