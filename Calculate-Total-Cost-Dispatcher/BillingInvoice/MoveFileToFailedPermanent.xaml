@@ -2,7 +2,6 @@
   <x:Members>
     <x:Property Name="in_FailedFolder" Type="InArgument(x:String)" />
     <x:Property Name="in_InputFolder" Type="InArgument(x:String)" />
-    <x:Property Name="out_FileName" Type="OutArgument(x:String)" />
   </x:Members>
   <this:MoveFile.in_FailedFolder>
     <InArgument x:TypeArguments="x:String" />
@@ -102,13 +101,13 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MoveFile" sap:VirtualizedContainerService.HintSize="790.4000000000001,1377.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MoveFile" sap:VirtualizedContainerService.HintSize="790.4000000000001,684.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEachFileX sap2010:Annotation.AnnotationText="This loop moves all files from the 'Failed' folder back to the 'Input' folder to retry processing." DisplayName="For Each File in Folder - Move Failed File to Input Folder" Filter="*.pdf" Folder="[in_FailedFolder]" sap:VirtualizedContainerService.HintSize="500.8,670.4" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX sap2010:Annotation.AnnotationText="This loop moves all files from the 'Failed' folder back to the 'Input' folder to retry processing." DisplayName="For Each File in Folder - Move Failed File to Input Folder" Filter="*.pdf" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="449.6,661.6" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -124,7 +123,7 @@
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" sap2010:Annotation.AnnotationText="Move the current failed file from the 'Failed' folder back to the 'Input' folder to retry processing." Destination="[in_InputFolder]" DisplayName="Move Current File" sap:VirtualizedContainerService.HintSize="382.4,227.2" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[CurrentFile.FullName]">
+            <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" sap2010:Annotation.AnnotationText="Move the current failed file from the 'Failed' folder back to the 'Input' folder to retry processing." Destination="[in_FailedFolder]" DisplayName="Move Current File" sap:VirtualizedContainerService.HintSize="382.4,227.2" sap2010:WorkflowViewState.IdRef="MoveFile_2" Path="[CurrentFile.FullName]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -136,53 +135,6 @@
       </ui:ForEachFileX.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:ForEachFileX>
-    <ui:ForEachFileX sap2010:Annotation.AnnotationText="This loop iterates through each file in the specified folder to find the first .pdf file for processing." DisplayName="For Each File in Input Folder" Filter="*.pdf" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="500.8,684" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
-      <ui:ForEachFileX.Body>
-        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-          <ActivityAction.Argument1>
-            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
-          </ActivityAction.Argument1>
-          <ActivityAction.Argument2>
-            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-          </ActivityAction.Argument2>
-          <Sequence sap2010:Annotation.AnnotationText="This sequence use to assign file name after found to pass out_FileName for processing TransactionItem" DisplayName="Do - Assign File Name" sap:VirtualizedContainerService.HintSize="467.2,353.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Assign sap2010:Annotation.AnnotationText="This activity assigns the full path of the current PDF file to the out_FileName argument for further processing." DisplayName="Assign Full File Name" sap:VirtualizedContainerService.HintSize="433.6,157.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[out_FileName]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[CurrentFile.FullName]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-            <ui:Break sap2010:Annotation.AnnotationText="This activity stops the loop once the first PDF file has been found and its path is assigned." DisplayName="Break - Exit After Finding First File" sap:VirtualizedContainerService.HintSize="433.6,92" sap2010:WorkflowViewState.IdRef="Break_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:Break>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachFileX.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
