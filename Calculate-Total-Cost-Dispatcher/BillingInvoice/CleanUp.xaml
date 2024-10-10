@@ -94,16 +94,17 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CleanUp" sap:VirtualizedContainerService.HintSize="692.0000000000001,1043.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CleanUp" sap:VirtualizedContainerService.HintSize="853.6000000000001,1273.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:DeleteFolderX DisplayName="Delete Input Folder" sap:VirtualizedContainerService.HintSize="416,56.8" sap2010:WorkflowViewState.IdRef="DeleteFolderX_2" Path="[in_InputFolderPath]" Recursive="True">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[in_InputFolderPath + &quot;+&quot; + in_FailedFolderPath + &quot;+&quot; + in_SuccessFolderPath]" />
+    <ui:DeleteFolderX DisplayName="Delete Input Folder" sap:VirtualizedContainerService.HintSize="416,112.8" sap2010:WorkflowViewState.IdRef="DeleteFolderX_2" Path="[in_InputFolderPath]" Recursive="True">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>

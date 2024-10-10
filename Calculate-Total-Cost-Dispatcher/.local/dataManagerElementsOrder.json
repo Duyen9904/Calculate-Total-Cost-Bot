@@ -36,8 +36,7 @@
       "Path": "Framework/GetTransactionData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "outfilename&Sequence_1",
-        "strFileName&Sequence_9"
+        "strFileName&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_TransactionNumber",
@@ -55,12 +54,10 @@
       "Path": "Framework/Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "blIsFailed&Sequence_1",
         "outdatatable&Sequence_1",
         "dt_Data&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "out_IsFailed",
         "in_TransactionItem",
         "in_Config"
       ],
@@ -90,25 +87,27 @@
       "Path": "BillingInvoice/ExtractPdfData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "strFileName&Sequence_1",
+        "strExtractedText&Sequence_1",
+        "strInvoiceNumber&Sequence_1",
+        "strBuildToName&Sequence_1",
+        "strDate&Sequence_1",
+        "strQuantiServiceFee&Sequence_1",
+        "strUnitPriceServiceFee&Sequence_1",
+        "strQuantiAddServices&Sequence_1",
+        "strUnitPriceAddServices&Sequence_1",
+        "strUnitPriceAddServicess&Sequence_1",
         "dt_data&Sequence_1",
         "ienFirstMatch&Sequence_1",
-        "strUnitPriceAddServicess&Sequence_1",
-        "strUnitPriceAddServices&Sequence_1",
-        "strQuantiAddServices&Sequence_1",
-        "strUnitPriceServiceFee&Sequence_1",
-        "strQuantiServiceFee&Sequence_1",
-        "strDate&Sequence_1",
-        "strBuildToName&Sequence_1",
-        "strInvoiceNumber&Sequence_1",
-        "strExtractedText&Sequence_1"
+        "strFileName&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
-        "io_IsFailed",
+        "in_InputFolder",
+        "in_SuccessPath",
+        "in_QueueName",
+        "in_OrchestratorFolder",
         "out_DataTable",
         "in_FailedFilePath",
-        "in_FileName",
-        "in_InputFile"
+        "in_FileName"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
@@ -116,11 +115,10 @@
     {
       "Path": "BillingInvoice/AddToQueue.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "in_DataTable&Sequence_8"
-      ],
+      "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
-        "io_IsFailed",
+        "in_QueueName",
+        "in_OrchestratorFolder",
         "in_FailedFile",
         "in_File",
         "in_SuccessPath",
@@ -283,7 +281,9 @@
     {
       "Path": "BillingInvoice/CleanUp.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
+      "VariablesSectionElementsOrder": [
+        "in_InputFolderPath&Sequence_1"
+      ],
       "ArgumentsSectionElementsOrder": [
         "in_FailedFolderPath",
         "in_SuccessFolderPath",

@@ -81,7 +81,7 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UserInput" sap:VirtualizedContainerService.HintSize="859.2,804" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UserInput" sap:VirtualizedContainerService.HintSize="858.4000000000001,939.9999999999999" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="arr_Options" />
     </Sequence.Variables>
@@ -91,18 +91,28 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Start user input choice...&quot;]" />
-    <Assign DisplayName="Populate Invoice Set Options Array" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap2010:Annotation.AnnotationText=" This activity initializes an array arr_Options containing available invoice sets (e.g., [&quot;Invoice set 1&quot;, &quot;Invoice set 2&quot;, &quot;Invoice set 3&quot;]). These options will be presented to the user in the next step." DisplayName="Assign Options Array" sap:VirtualizedContainerService.HintSize="433.6,173.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[arr_Options]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="s:String[]">[{"Invoice set 1", "Invoice set 2", "Invoice set 3", "Invoice set 4", "Invoice set 5", "Invoice set 6", "Invoice set 7", "Invoice set 8", "Invoice set 9", "Invoice set 10", "Invoice set 11", "Invoice set 12", "Invoice set 13", "Invoice set 14", "Invoice set 15"}]</InArgument>
       </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Input Invoice Set Name" sap:VirtualizedContainerService.HintSize="433.6,327.2" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Invoice Sets" Options="[arr_Options]" Title="Choose An Invoice Set">
+    <ui:InputDialog OptionsString="{x:Null}" sap2010:Annotation.AnnotationText="This activity prompts the user with a dialog box that allows them to select an invoice set from the arr_Options array. The user selection is stored in the out_UserInput variable for further processing." DisplayName="Prompt User to Choose Invoice Set" sap:VirtualizedContainerService.HintSize="433.6,403.2" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Invoice Sets" Options="[arr_Options]" Title="Please Choose An Invoice Set">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">[out_UserInput]</OutArgument>
       </ui:InputDialog.Result>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:InputDialog>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;End user input choice...&quot;]" />
   </Sequence>
