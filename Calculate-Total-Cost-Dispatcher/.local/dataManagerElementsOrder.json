@@ -88,14 +88,6 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "strExtractedText&Sequence_1",
-        "strInvoiceNumber&Sequence_1",
-        "strBuildToName&Sequence_1",
-        "strDate&Sequence_1",
-        "strQuantiServiceFee&Sequence_1",
-        "strUnitPriceServiceFee&Sequence_1",
-        "strQuantiAddServices&Sequence_1",
-        "strUnitPriceAddServices&Sequence_1",
-        "strUnitPriceAddServicess&Sequence_1",
         "dt_data&Sequence_1",
         "ienFirstMatch&Sequence_1",
         "strFileName&Sequence_1"
@@ -113,21 +105,6 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "BillingInvoice/AddToQueue.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": [
-        "in_QueueName",
-        "in_OrchestratorFolder",
-        "in_FailedFile",
-        "in_File",
-        "in_SuccessPath",
-        "in_DataTable"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
       "Path": "BillingInvoice/MoveFile.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
@@ -135,19 +112,6 @@
         "out_FileName",
         "in_InputFolder",
         "in_FailedFolder"
-      ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "BillingInvoice/GetPdfFileName.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "tets&Sequence_1"
-      ],
-      "ArgumentsSectionElementsOrder": [
-        "out_FileName",
-        "in_FolderPath"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
@@ -165,17 +129,6 @@
         "in_ConfigSheets",
         "out_Config"
       ],
-      "ConstantsSectionElementsOrder": [],
-      "AddedNamespaces": null
-    },
-    {
-      "Path": "BillingInvoice/DownloadInvoiceSet.xaml",
-      "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "strText&Sequence_3",
-        "strChosenInvoiceSet&Sequence_2"
-      ],
-      "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
@@ -281,9 +234,7 @@
     {
       "Path": "BillingInvoice/CleanUp.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "in_InputFolderPath&Sequence_1"
-      ],
+      "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
         "in_FailedFolderPath",
         "in_SuccessFolderPath",

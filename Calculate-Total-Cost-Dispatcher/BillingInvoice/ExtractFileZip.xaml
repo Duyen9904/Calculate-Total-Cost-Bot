@@ -99,7 +99,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractFileZip" sap:VirtualizedContainerService.HintSize="858.4000000000001,2884" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractFileZip" sap:VirtualizedContainerService.HintSize="853.6000000000001,2612.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="strExtracted" />
       <Variable x:TypeArguments="x:String" Name="strFileToExtract" />
@@ -109,7 +109,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If sap2010:Annotation.AnnotationText="This condition checks if there are any .zip files in the specified input folder. If there are, it proceeds to extract them; otherwise, the process ends." Condition="[Directory.GetFiles(in_InputFolder, &quot;*.zip&quot;).Length &gt; 0]" DisplayName="If - Check If Zip Files Exist" sap:VirtualizedContainerService.HintSize="518.4,2248" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="516.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Start extract zip file&quot;]" />
+    <If sap2010:Annotation.AnnotationText="This condition checks if there are any .zip files in the specified input folder. If there are, it proceeds to extract them; otherwise, the process ends." Condition="[Directory.GetFiles(in_InputFolder, &quot;*.zip&quot;).Length &gt; 0]" DisplayName="If - Check If Zip Files Exist" sap:VirtualizedContainerService.HintSize="516.8,2249.6" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -118,7 +119,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap2010:Annotation.AnnotationText="Extract zip file then move each file from extracted folder to input folder finally delete zip file and extracted folder." DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,2008.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap2010:Annotation.AnnotationText="Extract zip file then move each file from extracted folder to input folder finally delete zip file and extracted folder." DisplayName="Then" sap:VirtualizedContainerService.HintSize="483.2,2010.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -153,7 +154,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:DeleteFileX>
-          <ui:ForEachFileX sap2010:Annotation.AnnotationText="This loop iterates through each file in the extracted folder to move in file to input folder one by one" DisplayName="For Each File in Folder" Folder="[strExtracted.ToString]" sap:VirtualizedContainerService.HintSize="449.6,658.4" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="True" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+          <ui:ForEachFileX sap2010:Annotation.AnnotationText="This loop iterates through each file in the extracted folder to move in file to input folder one by one" DisplayName="For Each File in Folder" Folder="[strExtracted.ToString]" sap:VirtualizedContainerService.HintSize="449.6,659.2" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="True" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
             <ui:ForEachFileX.Body>
               <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
                 <ActivityAction.Argument1>
@@ -187,7 +188,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEachFileX>
-          <ui:ForEachFolderX sap2010:Annotation.AnnotationText="This loop iterates through each folder inside the in_InputFolder to perform operations such as deletion." DisplayName="For Each Folder in Input Folder" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="449.6,615.2" sap2010:WorkflowViewState.IdRef="ForEachFolderX_1" IncludeSubFolders="False" OrderBy="NameAscFirst" SkipFoldersWithoutPermission="False">
+          <ui:ForEachFolderX sap2010:Annotation.AnnotationText="This loop iterates through each folder inside the in_InputFolder to perform operations such as deletion." DisplayName="For Each Folder in Input Folder" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="449.6,616" sap2010:WorkflowViewState.IdRef="ForEachFolderX_1" IncludeSubFolders="False" OrderBy="NameAscFirst" SkipFoldersWithoutPermission="False">
             <ui:ForEachFolderX.Body>
               <ActivityAction x:TypeArguments="si:DirectoryInfo, x:Int32">
                 <ActivityAction.Argument1>
@@ -232,36 +233,6 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="518.4,612.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="483.2,511.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="449.6,451.2" sap2010:WorkflowViewState.IdRef="ForEachFileX_3" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
-            <ui:ForEachFileX.Body>
-              <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-                <ActivityAction.Argument1>
-                  <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
-                </ActivityAction.Argument1>
-                <ActivityAction.Argument2>
-                  <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-                </ActivityAction.Argument2>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="382.4,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[Directory.GetFiles(in_InputFolder, &quot;*.zip&quot;)(0)]" />
-                </Sequence>
-              </ActivityAction>
-            </ui:ForEachFileX.Body>
-          </ui:ForEachFileX>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="516.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;End extract zip file&quot;]" />
   </Sequence>
 </Activity>
