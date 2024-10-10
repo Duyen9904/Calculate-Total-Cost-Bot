@@ -12,7 +12,6 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "bl_IsFailed&Sequence_28",
         "TransactionItem&StateMachine_1",
         "SystemException&StateMachine_1",
         "BusinessException&StateMachine_1",
@@ -27,7 +26,6 @@
         "ShouldStop&Sequence_25"
       ],
       "ArgumentsSectionElementsOrder": [
-        "io_CurrentRetry",
         "in_OrchestratorQueueName",
         "in_OrchestratorQueueFolder"
       ],
@@ -38,11 +36,10 @@
       "Path": "Framework/GetTransactionData.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "intCurrentRetry&Sequence_1",
-        "strFileName&TryCatch_2"
+        "outfilename&Sequence_1",
+        "strFileName&Sequence_9"
       ],
       "ArgumentsSectionElementsOrder": [
-        "in_CurrentRetry",
         "in_TransactionNumber",
         "in_Config",
         "out_TransactionItem",
@@ -188,7 +185,6 @@
       "Path": "BillingInvoice/ExtractFileZip.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "blExistZip&Sequence_1",
         "strFileToExtract&Sequence_1",
         "strExtracted&Sequence_1"
       ],
@@ -201,7 +197,9 @@
     {
       "Path": "Framework/InitAllApplications.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
+      "VariablesSectionElementsOrder": [
+        "strUserInput&Sequence_9"
+      ],
       "ArgumentsSectionElementsOrder": [
         "in_Config"
       ],
@@ -243,6 +241,53 @@
         "in_FailedFolderPath",
         "in_CurrentRetry",
         "in_MaxRetry"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "BillingInvoice/GGDriveDownload.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "str_DownloadPath&Sequence_1",
+        "arr_Options&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_GGDrive",
+        "in_InputFolderPath",
+        "in_UserInput"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "BillingInvoice/UserInput.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "arr_Options&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_UserInput"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/KillAllProcesses.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "BillingInvoice/CleanUp.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_FailedFolderPath",
+        "in_SuccessFolderPath",
+        "in_InputFolderPath"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

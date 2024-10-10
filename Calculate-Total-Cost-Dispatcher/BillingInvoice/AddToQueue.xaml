@@ -4,6 +4,8 @@
     <x:Property Name="in_SuccessPath" Type="InArgument(x:String)" />
     <x:Property Name="in_File" Type="InArgument(x:String)" />
     <x:Property Name="in_FailedFile" Type="InArgument(x:String)" />
+    <x:Property Name="in_OrchestratorFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
   </x:Members>
   <this:AddToQueue.in_SuccessPath>
     <InArgument x:TypeArguments="x:String" />
@@ -14,6 +16,12 @@
   <this:AddToQueue.in_FailedFile>
     <InArgument x:TypeArguments="x:String" />
   </this:AddToQueue.in_FailedFile>
+  <this:AddToQueue.in_OrchestratorFolder>
+    <InArgument x:TypeArguments="x:String" />
+  </this:AddToQueue.in_OrchestratorFolder>
+  <this:AddToQueue.in_QueueName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:AddToQueue.in_QueueName>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -136,7 +144,7 @@
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:BulkAddQueueItems TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Adds the items from the DataTable to the queue. The queue name used is 'CalculateCost'." DisplayName="Bulk Add Queue Items" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="382.4,271.2" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_1" QueueItemsDataTable="[in_DataTable]" QueueName="CalculateCost">
+          <ui:BulkAddQueueItems TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Adds the items from the DataTable to the queue. The queue name used is 'CalculateCost'." DisplayName="Bulk Add Queue Items" FolderPath="[in_OrchestratorFolder]" sap:VirtualizedContainerService.HintSize="382.4,271.2" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_1" QueueItemsDataTable="[in_DataTable]" QueueName="[in_QueueName]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
