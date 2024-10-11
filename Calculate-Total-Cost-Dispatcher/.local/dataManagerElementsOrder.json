@@ -54,8 +54,8 @@
       "Path": "Framework/Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "outdatatable&Sequence_1",
-        "dt_Data&Sequence_1"
+        "dt_Data&Sequence_1",
+        "outdatatable&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_TransactionItem",
@@ -200,8 +200,7 @@
       "Path": "BillingInvoice/GGDriveDownload.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "str_DownloadPath&Sequence_1",
-        "arr_Options&Sequence_1"
+        "str_DownloadPath&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_GGDrive",
@@ -234,7 +233,11 @@
     {
       "Path": "BillingInvoice/CleanUp.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
+      "VariablesSectionElementsOrder": [
+        "blFailedExist&Sequence_1",
+        "blSucessExist&Sequence_1",
+        "blInputExist&Sequence_1"
+      ],
       "ArgumentsSectionElementsOrder": [
         "in_FailedFolderPath",
         "in_SuccessFolderPath",

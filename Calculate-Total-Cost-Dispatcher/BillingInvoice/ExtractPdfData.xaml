@@ -156,7 +156,7 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractPdfData" sap:VirtualizedContainerService.HintSize="853.6000000000001,3000.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractPdfData" sap:VirtualizedContainerService.HintSize="729.6000000000001,2985.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strExtractedText" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_data" />
@@ -176,7 +176,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:ForEachFileX sap2010:Annotation.AnnotationText="Iterates over each file in the specified folder and performs actions on each file. As read data from pdf then extract needed data then add each data table to queue." DisplayName="For Each File in Folder" Filter="*.pdf" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="523.2,2637.6" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX sap2010:Annotation.AnnotationText="Iterates over each file in the specified folder and performs actions on each file. As read data from pdf then extract needed data then add each data table to queue." DisplayName="For Each File in Folder" Filter="*.pdf" Folder="[in_InputFolder]" sap:VirtualizedContainerService.HintSize="523.2,2622.4" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -185,7 +185,7 @@
           <ActivityAction.Argument2>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
           </ActivityAction.Argument2>
-          <Sequence sap2010:Annotation.AnnotationText="This do block will extract data from pdf then up data to queue." DisplayName="Do - Extract Data and Add To Queue" sap:VirtualizedContainerService.HintSize="489.6,2298.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence sap2010:Annotation.AnnotationText="This do block will extract data from pdf then up data to queue." DisplayName="Do - Extract Data and Add To Queue" sap:VirtualizedContainerService.HintSize="489.6,2283.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -206,10 +206,10 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:BuildDataTable>
-            <TryCatch sap2010:Annotation.AnnotationText="Attempt to read the text from the specified PDF file. If an error occurs, handle it gracefully." DisplayName="Try Catch - Reading PDF" sap:VirtualizedContainerService.HintSize="456,116.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch sap2010:Annotation.AnnotationText="Attempt to read the text from the specified PDF file. If an error occurs, handle it gracefully." DisplayName="Try Catch - Reading PDF" sap:VirtualizedContainerService.HintSize="456,730.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
@@ -224,7 +224,7 @@
                 </ui:ReadPDFText>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422.4,402.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422.4,490.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -235,20 +235,27 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                     </ActivityAction.Argument>
-                    <Sequence sap2010:Annotation.AnnotationText=" This sequence use to move file to failed folder if not process successfully" sap:VirtualizedContainerService.HintSize="416,331.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <Sequence sap2010:Annotation.AnnotationText=" This sequence use to move file to failed folder if not process successfully" sap:VirtualizedContainerService.HintSize="416,419.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" sap2010:Annotation.AnnotationText="This activity will move file that process unsuccessfully to failed folder for try process later." Destination="[in_FailedFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="382.4,227.2" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[in_InputFolder + CurrentFile.Name]">
+                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" sap2010:Annotation.AnnotationText="This activity will move file that process unsuccessfully to failed folder for try process later." Destination="[in_FailedFilePath]" DisplayName="Move File To Failed Folder" sap:VirtualizedContainerService.HintSize="382.4,236" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[in_InputFolder + CurrentFile.Name]">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:MoveFile>
+                      <ui:Continue sap2010:Annotation.AnnotationText="Continue with next item" sap:VirtualizedContainerService.HintSize="382.4,79.2" sap2010:WorkflowViewState.IdRef="Continue_2">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:Continue>
                     </Sequence>
                   </ActivityAction>
                 </Catch>
@@ -257,7 +264,7 @@
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Reading pdf: &quot; + CurrentFile.Name]" />
               </TryCatch.Finally>
             </TryCatch>
-            <TryCatch sap2010:Annotation.AnnotationText="This try catch use to find matching pattern for each row in dt_Data then assign to column value after found it " DisplayName="Try Catch Find Matching Pattern in in_FileName" sap:VirtualizedContainerService.HintSize="456,892" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+            <TryCatch sap2010:Annotation.AnnotationText="This try catch use to find matching pattern for each row in dt_Data then assign to column value after found it " DisplayName="Try Catch Find Matching Pattern in in_FileName" sap:VirtualizedContainerService.HintSize="456,263.2" sap2010:WorkflowViewState.IdRef="TryCatch_2">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -266,7 +273,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <TryCatch.Try>
-                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through each row in the data table to process the extracted PDF data." DataTable="[dt_data]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="500.8,572.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Loop through each row in the data table to process the extracted PDF data." DataTable="[dt_data]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                   <ui:ForEachRow.Body>
                     <ActivityAction x:TypeArguments="sd:DataRow">
                       <ActivityAction.Argument>
@@ -312,10 +319,10 @@
                 </ui:ForEachRow>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:NullReferenceException" sap:VirtualizedContainerService.HintSize="422.4,652" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                <Catch x:TypeArguments="s:NullReferenceException" sap:VirtualizedContainerService.HintSize="400,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -368,7 +375,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Assign>
-            <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Add the processed data as a new row to the data table." ArrayRow="[{&#xA;&#x9;strFileName,&#xA;    dt_data.Rows(0).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(1).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(2).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(3).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(4).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(5).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(6).Item(&quot;Value&quot;).ToString&#xA;}]" DataTable="[out_DataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="433.6,251.2" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+            <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Add the processed data as a new row to the data table." ArrayRow="[{&#xA;&#x9;strFileName,&#xA;    dt_data.Rows(0).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(1).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(2).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(3).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(4).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(5).Item(&quot;Value&quot;).ToString, &#xA;    dt_data.Rows(6).Item(&quot;Value&quot;).ToString&#xA;}]" DataTable="[out_DataTable]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="456,251.2" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>

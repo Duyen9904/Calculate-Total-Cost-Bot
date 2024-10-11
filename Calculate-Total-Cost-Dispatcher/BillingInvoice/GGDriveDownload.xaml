@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GGDriveDownload" this:GGDriveDownload.in_UserInput="Invoice set 2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:uuam="clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GGDriveDownload" this:GGDriveDownload.in_UserInput="Invoice set 2" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:uuam="clr-namespace:UiPath.UIAutomationNext.Activities.Models;assembly=UiPath.UIAutomationNext.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_UserInput" Type="InArgument(x:String)" />
     <x:Property Name="in_InputFolderPath" Type="InArgument(x:String)" />
@@ -74,6 +74,7 @@
       <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
       <x:String>System.Security</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -145,7 +146,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GGDriveDownload" sap:VirtualizedContainerService.HintSize="853.6000000000001,653.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GGDriveDownload" sap:VirtualizedContainerService.HintSize="729.6,1219.1999999999998" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_DownloadPath" />
     </Sequence.Variables>
@@ -154,8 +155,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Start download invoice set from google drive...&quot;]" />
-    <Assign sap2010:Annotation.AnnotationText="This generate the download path and name for the zip file to be downloaded." DisplayName="Create Download Path" sap:VirtualizedContainerService.HintSize="433.6,157.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="512,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Start download invoice set from google drive...&quot;]" />
+    <Assign sap2010:Annotation.AnnotationText="This generate the download path and name for the zip file to be downloaded." DisplayName="Create Download Path" sap:VirtualizedContainerService.HintSize="512,157.6" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[str_DownloadPath]</OutArgument>
       </Assign.To>
@@ -168,166 +169,218 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Use google drive with ignonito mode for indicate which folder will be downloaded" AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Chrome: Invoices" sap:VirtualizedContainerService.HintSize="433.6,132.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" IsIncognito="True" OpenMode="Always" ScopeGuid="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V2" WindowResize="Maximize">
-      <uix:NApplicationCard.Body>
-        <ActivityAction x:TypeArguments="x:Object">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
-          </ActivityAction.Argument>
-          <uix:NForEachUiElement sap2010:Annotation.AnnotationText="This activity iterates through each invoice set in the Google Drive folder and filters out the invoice set that matches the name provided by the user input." DisplayName="For Each Invoice Set" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='DownloadButton'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='InvoiceSetName'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='c-wiz' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext'&gt;&lt;webctrl tag='c-wiz' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='6' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='fulltext'&gt;&lt;webctrl tag='c-wiz' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="479.2,1556" sap2010:WorkflowViewState.IdRef="NForEachUiElement_6" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V4">
-            <uix:NForEachUiElement.Body>
-              <ActivityAction x:TypeArguments="x:Int32">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-                </ActivityAction.Argument>
-                <Sequence sap2010:Annotation.AnnotationText="This sequence first resets the browser zoom to the default level to ensure all UI elements are visible. It then clicks the download button corresponding to the selected invoice set name." DisplayName="Download File" sap:VirtualizedContainerService.HintSize="416,1244.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_9">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,297.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Zoom To Default" sap:VirtualizedContainerService.HintSize="382.4,237.6" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" Shortcuts="[d(hk)][d(ctrl)]0[u(ctrl)][u(hk)]" Version="V4">
-                          <uix:NKeyboardShortcuts.VerifyOptions>
-                            <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
-                              <uix:VerifyExecutionOptions.Retry>
-                                <InArgument x:TypeArguments="x:Boolean" />
-                              </uix:VerifyExecutionOptions.Retry>
-                              <uix:VerifyExecutionOptions.Timeout>
-                                <InArgument x:TypeArguments="x:Double" />
-                              </uix:VerifyExecutionOptions.Timeout>
-                            </uix:VerifyExecutionOptions>
-                          </uix:NKeyboardShortcuts.VerifyOptions>
-                        </uix:NKeyboardShortcuts>
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:CommentOut>
-                  <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="This activity simulates a click on the &quot;Download&quot; button in the browser to initiate the file download." ClickType="Single" DelayAfter="15" DisplayName="Click Download Button" sap:VirtualizedContainerService.HintSize="382.4,249.6" sap2010:WorkflowViewState.IdRef="NClick_7" InUiElement="[DownloadButton]" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V4">
-                    <uix:NClick.VerifyOptions>
-                      <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
-                        <uix:VerifyExecutionOptions.Retry>
-                          <InArgument x:TypeArguments="x:Boolean" />
-                        </uix:VerifyExecutionOptions.Retry>
-                        <uix:VerifyExecutionOptions.Timeout>
-                          <InArgument x:TypeArguments="x:Double" />
-                        </uix:VerifyExecutionOptions.Timeout>
-                      </uix:VerifyExecutionOptions>
-                    </uix:NClick.VerifyOptions>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NClick>
-                  <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="This activity inputs the download path (str_DownloadPath) where the file will be saved locally. It clears any existing text before typing the path to ensure the correct location is used." ClickBeforeMode="Single" DisplayName="Type Into File Name" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382.4,362.4" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="HardwareEvents" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Text="[str_DownloadPath]" Version="V4">
-                    <uix:NTypeInto.Target>
-                      <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/folders/1GQbDKmV-dNwHf9gkuJXI6AP49jhCwram" DesignTimeRectangle="169, 515, 1007, 25" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;" Guid="f59aa8fc-81d8-4c08-aba3-8d4ae7bfd912" InformativeScreenshot="0b4cc3d2c201c6a9d7ba85bb01b7fc8c.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V4" Visibility="Interactive">
-                        <uix:TargetAnchorable.Anchors>
-                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                            <uix:Target DesignTimeRectangle="22, 512, 144, 31" ElementType="Text" FullSelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;ctrl name='Explorer Pane' role='pane' /&gt;&lt;ctrl name='Folder Layout Pane' role='pane' /&gt;&lt;ctrl name='Details Pane' role='pane' /&gt;&lt;ctrl name='File name:' role='text' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;ctrl name='Explorer Pane' role='pane' /&gt;&lt;ctrl name='Folder Layout Pane' role='pane' /&gt;&lt;ctrl name='Details Pane' role='pane' /&gt;&lt;ctrl name='File name:' role='text' automationid='' check:text='File name:' /&gt;" Guid="5156f04c-f0a6-49c6-906b-f34ecdabaa60" SearchSteps="Selector, FuzzySelector" />
-                          </scg:List>
-                        </uix:TargetAnchorable.Anchors>
-                      </uix:TargetAnchorable>
-                    </uix:NTypeInto.Target>
-                    <uix:NTypeInto.VerifyOptions>
-                      <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
-                        <uix:VerifyExecutionTypeIntoOptions.Retry>
-                          <InArgument x:TypeArguments="x:Boolean" />
-                        </uix:VerifyExecutionTypeIntoOptions.Retry>
-                        <uix:VerifyExecutionTypeIntoOptions.Timeout>
-                          <InArgument x:TypeArguments="x:Double" />
-                        </uix:VerifyExecutionTypeIntoOptions.Timeout>
-                      </uix:VerifyExecutionTypeIntoOptions>
-                    </uix:NTypeInto.VerifyOptions>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NTypeInto>
-                  <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="This activity clicks the &quot;Save&quot; button in the browser's file save dialog, confirming the file download to the specified path." ClickType="Single" DisplayName="Click Save" sap:VirtualizedContainerService.HintSize="382.4,285.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V4">
-                    <uix:NClick.Target>
-                      <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/folders/1GQbDKmV-dNwHf9gkuJXI6AP49jhCwram" DesignTimeRectangle="950, 652, 110, 33" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Save' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Save' check:text='&amp;amp;Save' /&gt;" Guid="70ce992e-69d4-4e13-a766-9bce4c523ecf" InformativeScreenshot="0ceecb698a9e5b52adfd0e61a6221071.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V4" Visibility="Interactive" />
-                    </uix:NClick.Target>
-                    <uix:NClick.VerifyOptions>
-                      <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
-                        <uix:VerifyExecutionOptions.Retry>
-                          <InArgument x:TypeArguments="x:Boolean" />
-                        </uix:VerifyExecutionOptions.Retry>
-                        <uix:VerifyExecutionOptions.Timeout>
-                          <InArgument x:TypeArguments="x:Double" />
-                        </uix:VerifyExecutionOptions.Timeout>
-                      </uix:VerifyExecutionOptions>
-                    </uix:NClick.VerifyOptions>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </uix:NClick>
-                  <ui:LogMessage DisplayName="Log Downloaded File" sap:VirtualizedContainerService.HintSize="382.4,168.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(&quot;Downloaded {0}&quot;, str_DownloadPath)]" />
-                </Sequence>
-              </ActivityAction>
-            </uix:NForEachUiElement.Body>
-            <uix:NForEachUiElement.Filter>
-              <uuam:FilterArgument LogicalOperator="And">
-                <uuam:FilterArgument.Filters>
-                  <scg:List x:TypeArguments="uuam:FilterEntryArgument" Capacity="1">
-                    <uuam:FilterEntryArgument Criterion="Column1" Operator="Equals" Value="[in_UserInput]" />
-                  </scg:List>
-                </uuam:FilterArgument.Filters>
-              </uuam:FilterArgument>
-            </uix:NForEachUiElement.Filter>
-            <uix:NForEachUiElement.Target>
-              <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/folders/1GQbDKmV-dNwHf9gkuJXI6AP49jhCwram" DesignTimeRectangle="122, 375, 1781, 972" DesignTimeScaleFactor="1.350000023841858" FullSelectorArgument="&lt;webctrl class='iZmuQc' parentid=':1' tag='DIV' /&gt;" Guid="16d64b88-8bb4-4547-8729-43fa24daf415" InformativeScreenshot="c9ffe74593eb4c258717a13b1ba59a87.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Invoices - Google Drive' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
-            </uix:NForEachUiElement.Target>
-            <uix:NForEachUiElement.Variables>
-              <Variable x:TypeArguments="ui:UiElement" Name="DownloadButton" />
-            </uix:NForEachUiElement.Variables>
-            <uix:NForEachUiElement.VariablesMetadata>
-              <scg:List x:TypeArguments="uuam:VariableMetadata" x:Key="Column0" Capacity="4">
-                <uuam:VariableMetadata Name="DownloadButton" Type="ui:UiElement" />
-                <uuam:VariableMetadata Name="DownloadButton_Label" Type="x:String" />
-              </scg:List>
-              <scg:List x:TypeArguments="uuam:VariableMetadata" x:Key="Column1" Capacity="4">
-                <uuam:VariableMetadata Name="InvoiceSetName" Type="x:String" />
-              </scg:List>
-            </uix:NForEachUiElement.VariablesMetadata>
+    <ui:RetryScope sap2010:Annotation.AnnotationText="Retry if download from Google Drive failed due to network connecting" DisplayName="Retry Download From Google Drive" sap:VirtualizedContainerService.HintSize="512,698.4" sap2010:WorkflowViewState.IdRef="RetryScope_1">
+      <ui:RetryScope.ActivityBody>
+        <ActivityAction>
+          <Sequence DisplayName="Download from Google Drive" sap:VirtualizedContainerService.HintSize="470.4,459.2" sap2010:WorkflowViewState.IdRef="Sequence_20">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-          </uix:NForEachUiElement>
+            <TryCatch sap2010:Annotation.AnnotationText="Try catch download from Google Drive to catch exception if network error or Google Drive not support" DisplayName="Try Catch Download From Google Drive" sap:VirtualizedContainerService.HintSize="436.8,399.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <uix:NApplicationCard sap2010:Annotation.AnnotationText="Use google drive with ignonito mode for indicate which folder will be downloaded" AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Chrome: Invoices" sap:VirtualizedContainerService.HintSize="200,100.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" IsIncognito="True" OpenMode="Always" ScopeGuid="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V2" WindowResize="Maximize">
+                  <uix:NApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                      </ActivityAction.Argument>
+                      <uix:NForEachUiElement sap2010:Annotation.AnnotationText="This activity iterates through each invoice set in the Google Drive folder and filters out the invoice set that matches the name provided by the user input." DisplayName="For Each Invoice Set" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='DownloadButton'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='InvoiceSetName'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='c-wiz' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext'&gt;&lt;webctrl tag='c-wiz' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='6' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='fulltext'&gt;&lt;webctrl tag='c-wiz' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="479.2,1556" sap2010:WorkflowViewState.IdRef="NForEachUiElement_6" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V4">
+                        <uix:NForEachUiElement.Body>
+                          <ActivityAction x:TypeArguments="x:Int32">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                            </ActivityAction.Argument>
+                            <Sequence sap2010:Annotation.AnnotationText="This sequence first resets the browser zoom to the default level to ensure all UI elements are visible. It then clicks the download button corresponding to the selected invoice set name." DisplayName="Download File" sap:VirtualizedContainerService.HintSize="416,1244.8" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="382.4,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                                <ui:CommentOut.Body>
+                                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,297.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Zoom To Default" sap:VirtualizedContainerService.HintSize="382.4,237.6" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" Shortcuts="[d(hk)][d(ctrl)]0[u(ctrl)][u(hk)]" Version="V4">
+                                      <uix:NKeyboardShortcuts.VerifyOptions>
+                                        <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                          <uix:VerifyExecutionOptions.Retry>
+                                            <InArgument x:TypeArguments="x:Boolean" />
+                                          </uix:VerifyExecutionOptions.Retry>
+                                          <uix:VerifyExecutionOptions.Timeout>
+                                            <InArgument x:TypeArguments="x:Double" />
+                                          </uix:VerifyExecutionOptions.Timeout>
+                                        </uix:VerifyExecutionOptions>
+                                      </uix:NKeyboardShortcuts.VerifyOptions>
+                                    </uix:NKeyboardShortcuts>
+                                  </Sequence>
+                                </ui:CommentOut.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:CommentOut>
+                              <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="This activity simulates a click on the &quot;Download&quot; button in the browser to initiate the file download." ClickType="Single" DelayAfter="15" DisplayName="Click Download Button" sap:VirtualizedContainerService.HintSize="382.4,249.6" sap2010:WorkflowViewState.IdRef="NClick_7" InUiElement="[DownloadButton]" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V4">
+                                <uix:NClick.VerifyOptions>
+                                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                    <uix:VerifyExecutionOptions.Retry>
+                                      <InArgument x:TypeArguments="x:Boolean" />
+                                    </uix:VerifyExecutionOptions.Retry>
+                                    <uix:VerifyExecutionOptions.Timeout>
+                                      <InArgument x:TypeArguments="x:Double" />
+                                    </uix:VerifyExecutionOptions.Timeout>
+                                  </uix:VerifyExecutionOptions>
+                                </uix:NClick.VerifyOptions>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NClick>
+                              <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="This activity inputs the download path (str_DownloadPath) where the file will be saved locally. It clears any existing text before typing the path to ensure the correct location is used." ClickBeforeMode="Single" DisplayName="Type Into File Name" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382.4,362.4" sap2010:WorkflowViewState.IdRef="NTypeInto_4" InteractionMode="HardwareEvents" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Text="[str_DownloadPath]" Version="V4">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/folders/1GQbDKmV-dNwHf9gkuJXI6AP49jhCwram" DesignTimeRectangle="169, 515, 1007, 25" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;wnd aaname='File name:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;" Guid="f59aa8fc-81d8-4c08-aba3-8d4ae7bfd912" InformativeScreenshot="0b4cc3d2c201c6a9d7ba85bb01b7fc8c.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V4" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="22, 512, 144, 31" ElementType="Text" FullSelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;ctrl name='Explorer Pane' role='pane' /&gt;&lt;ctrl name='Folder Layout Pane' role='pane' /&gt;&lt;ctrl name='Details Pane' role='pane' /&gt;&lt;ctrl name='File name:' role='text' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Explorer Pane' cls='DirectUIHWND' /&gt;&lt;ctrl name='Explorer Pane' role='pane' /&gt;&lt;ctrl name='Folder Layout Pane' role='pane' /&gt;&lt;ctrl name='Details Pane' role='pane' /&gt;&lt;ctrl name='File name:' role='text' automationid='' check:text='File name:' /&gt;" Guid="5156f04c-f0a6-49c6-906b-f34ecdabaa60" SearchSteps="Selector, FuzzySelector" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NTypeInto.Target>
+                                <uix:NTypeInto.VerifyOptions>
+                                  <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                                      <InArgument x:TypeArguments="x:Boolean" />
+                                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                      <InArgument x:TypeArguments="x:Double" />
+                                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                                  </uix:VerifyExecutionTypeIntoOptions>
+                                </uix:NTypeInto.VerifyOptions>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NTypeInto>
+                              <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="This activity clicks the &quot;Save&quot; button in the browser's file save dialog, confirming the file download to the specified path." ClickType="Single" DisplayName="Click Save" sap:VirtualizedContainerService.HintSize="382.4,285.6" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="41aeead1-bb3b-4cc5-924d-2320367677bb" Version="V4">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/folders/1GQbDKmV-dNwHf9gkuJXI6AP49jhCwram" DesignTimeRectangle="950, 652, 110, 33" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Save' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Save' check:text='&amp;amp;Save' /&gt;" Guid="70ce992e-69d4-4e13-a766-9bce4c523ecf" InformativeScreenshot="0ceecb698a9e5b52adfd0e61a6221071.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Save As' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V4" Visibility="Interactive" />
+                                </uix:NClick.Target>
+                                <uix:NClick.VerifyOptions>
+                                  <uix:VerifyExecutionOptions DisplayName="{x:Null}" Mode="Appears">
+                                    <uix:VerifyExecutionOptions.Retry>
+                                      <InArgument x:TypeArguments="x:Boolean" />
+                                    </uix:VerifyExecutionOptions.Retry>
+                                    <uix:VerifyExecutionOptions.Timeout>
+                                      <InArgument x:TypeArguments="x:Double" />
+                                    </uix:VerifyExecutionOptions.Timeout>
+                                  </uix:VerifyExecutionOptions>
+                                </uix:NClick.VerifyOptions>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </uix:NClick>
+                              <ui:LogMessage DisplayName="Log Downloaded File" sap:VirtualizedContainerService.HintSize="382.4,168.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(&quot;Downloaded {0}&quot;, str_DownloadPath)]" />
+                            </Sequence>
+                          </ActivityAction>
+                        </uix:NForEachUiElement.Body>
+                        <uix:NForEachUiElement.Filter>
+                          <uuam:FilterArgument LogicalOperator="And">
+                            <uuam:FilterArgument.Filters>
+                              <scg:List x:TypeArguments="uuam:FilterEntryArgument" Capacity="1">
+                                <uuam:FilterEntryArgument Criterion="Column1" Operator="Equals" Value="[in_UserInput]" />
+                              </scg:List>
+                            </uuam:FilterArgument.Filters>
+                          </uuam:FilterArgument>
+                        </uix:NForEachUiElement.Filter>
+                        <uix:NForEachUiElement.Target>
+                          <uix:TargetAnchorable BrowserURL="https://drive.google.com/drive/folders/1GQbDKmV-dNwHf9gkuJXI6AP49jhCwram" DesignTimeRectangle="122, 375, 1781, 972" DesignTimeScaleFactor="1.350000023841858" FullSelectorArgument="&lt;webctrl class='iZmuQc' parentid=':1' tag='DIV' /&gt;" Guid="16d64b88-8bb4-4547-8729-43fa24daf415" InformativeScreenshot="c9ffe74593eb4c258717a13b1ba59a87.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Invoices - Google Drive' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                        </uix:NForEachUiElement.Target>
+                        <uix:NForEachUiElement.Variables>
+                          <Variable x:TypeArguments="ui:UiElement" Name="DownloadButton" />
+                          <Variable x:TypeArguments="x:String" Name="DownloadButton_Label" />
+                          <Variable x:TypeArguments="x:String" Name="InvoiceSetName" />
+                        </uix:NForEachUiElement.Variables>
+                        <uix:NForEachUiElement.VariablesMetadata>
+                          <scg:List x:TypeArguments="uuam:VariableMetadata" x:Key="Column0" Capacity="4">
+                            <uuam:VariableMetadata Name="DownloadButton" Type="ui:UiElement" />
+                            <uuam:VariableMetadata Name="DownloadButton_Label" Type="x:String" />
+                          </scg:List>
+                          <scg:List x:TypeArguments="uuam:VariableMetadata" x:Key="Column1" Capacity="4">
+                            <uuam:VariableMetadata Name="InvoiceSetName" Type="x:String" />
+                          </scg:List>
+                        </uix:NForEachUiElement.VariablesMetadata>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </uix:NForEachUiElement>
+                    </ActivityAction>
+                  </uix:NApplicationCard.Body>
+                  <uix:NApplicationCard.TargetApp>
+                    <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_2" InformativeScreenshot="4ae1545b1ab5156ed905c3b834516251.jpg" Selector="&lt;html app='chrome.exe' title='Invoices - Google Drive' /&gt;" Title="Invoices - Google Drive" Url="[in_GGDrive]" />
+                  </uix:NApplicationCard.TargetApp>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NApplicationCard>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[&quot;Error while downloading from Google Drive: &quot; + exception.Message]" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Done downloading from Google Drive&quot;]" />
+              </TryCatch.Finally>
+            </TryCatch>
+          </Sequence>
         </ActivityAction>
-      </uix:NApplicationCard.Body>
-      <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_2" InformativeScreenshot="4ae1545b1ab5156ed905c3b834516251.jpg" Selector="&lt;html app='chrome.exe' title='Invoices - Google Drive' /&gt;" Title="Invoices - Google Drive" Url="[in_GGDrive]" />
-      </uix:NApplicationCard.TargetApp>
+      </ui:RetryScope.ActivityBody>
+      <ui:RetryScope.Condition>
+        <ActivityFunc x:TypeArguments="x:Boolean" />
+      </ui:RetryScope.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </uix:NApplicationCard>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;End download invoice set from google drive...&quot;]" />
+    </ui:RetryScope>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="512,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;End download invoice set from google drive...&quot;]" />
   </Sequence>
 </Activity>
