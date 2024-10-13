@@ -127,7 +127,8 @@ Logs/
 project.json.user
 UiPath.settings
 UiPath.project.user
-
+project.json
+project.settings.json
 # Screenshot folder
 .screenshots/
 
